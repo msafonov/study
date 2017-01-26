@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body %}
+  <ul class="entries">
+  {% for message in message_list %}
+    <li>{% include "includes/message.html" %}</li>
+  {% else %}
+    <li><em>You've chosen nothing</em></li>
+  {% endfor %}
+  </ul>
+  {% include "includes/pagination.html" %}
+<a href="{{ url_for('start_page') }}">Start Page</a>
+<br/>
+{% endblock %}

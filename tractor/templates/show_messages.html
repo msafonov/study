@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+{% block body %}
+  <ul class="entries">
+  {% for message in message_list %}
+    <li>{% include "includes/message.html" %}</li>
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em></li>
+  {% endfor %}
+  </ul>
+  {% include "includes/pagination.html" %}
+<hr>
+<hr>
+<div>
+    <h2>Filter</h2>
+    <form action="{{ url_for('users') }}" method="post">
+        <dl>
+        {% for username in usernames %}
+            <dt><input type="checkbox" name="users" value="{{ username.username }}">{{ username.username }}<br>
+        {% endfor %}
+        <dd><input type=submit name="submit" value=Filter>
+        </dl>
+    </form>
+</div>
+{% endblock %}
+
+
+

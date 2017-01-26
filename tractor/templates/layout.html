@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<title>Tractor</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+    <h1>Tractor</h1>
+    <div class=metanav>
+        {% if not session.logged_in %}
+            <a style="padding-right:2em" href="{{ url_for('login') }}" >log in</a>
+            <a href="{{ url_for('signup') }}">sign up</a>
+        {% else %}
+            <a style="padding-right:2em" href="{{ url_for('create') }}">create</a>
+            <a href="{{ url_for('logout') }}">log out</a>
+        {% endif %}
+    </div>
+    {% if session.logged_in %}
+            <h3>You are logged as {{ session.username }}</h3>
+    {% endif %}
+    {% for message in get_flashed_messages() %}
+        <div class=flash>{{ message }}</div>
+    {% endfor %}
+    {% block body %}{% endblock %}
+</div>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="page">
+    <h2>Filter</h2>
+    <br>
+    <form action="{{ url_for('users') }}" method="post">
+        <dl>
+        {% for username in usernames %}
+            <dt><input type="checkbox" name="users" value="{{ username.username }}">{{ username.username }}<br>
+        {% endfor %}
+        <dd><input type=submit name="submit" value=Filter>
+        </dl>
+    </form>
+
+    </div>
+</body>
+</html>
+
+
+
+
