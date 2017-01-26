@@ -184,25 +184,12 @@ def _inject_user():
     return {'current_user': get_current_user()}
 
 
-@app.route('/users', methods=['GET', 'POST'])
-def users():
-    usernames = User.select(User.username)
-    if request.method == 'POST':
-        users = request.form.getlist('users')
-        filter = []
-        for user in users:
-            user = User.get(User.username==user).id
-            filter.append(user)
-        session['filter'] = filter
-        return redirect(url_for('filter'))
-    return render_template('users.html', usernames=usernames)
-
 
 @app.route('/filter')
 def filter():
     messages = Message.select().where(Message.user << session['filter'])
     return object_list('filter.html', messages, 'message_list')
-    return object_list('show_messages.html', messages, 'message_list', usernames=usernames)
+    
 
 
 # allow running from the command line
