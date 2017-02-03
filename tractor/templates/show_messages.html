@@ -12,7 +12,7 @@
 <hr>
 <div>
     <h2>Filter</h2>
-    <form action="{{ url_for('filter') }}" method="post">
+    <form action="{{ url_for('users') }}" method="post">
         <dl>
         {% for username in usernames %}
             <dt><input type="checkbox" name="users" value="{{ username.username }}">{{ username.username }}<br>
